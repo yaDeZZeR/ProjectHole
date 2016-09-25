@@ -2,12 +2,19 @@ class Api::V1::SessionsController < Devise::SessionsController
   skip_before_filter :verify_authenticity_token,
                      :if => Proc.new { |c| c.request.format == 'application/json' }
 
-  skip_before_filter :authenticate_user_from_token!, only: [:create, :failure]
+  before_filter :authenticate_user_from_token!, only: [:destroy]
+
+  skip_before_filter :require_no_authentication, only: [:create, :failure]
   skip_before_filter :verify_signed_out_user, only: :destroy
 
   respond_to :json
 
   def create
+    last_user = current_user
+    if last_user
+      sign_out(last_user)
+    end
+
     warden.authenticate!(auth_options)
     user = current_user
     user.ensure_authentication_token
@@ -27,10 +34,15 @@ class Api::V1::SessionsController < Devise::SessionsController
   end
 
   def failure
+    puts 'aaaaaaaaaaaaaa'
     render :status => 401,
            :json => { :success => false,
                       :info => "Login Failed",
                       :data => {} }
+  end
+
+  def gcm_params
+      params.require(:user).permit(:gcm_token)
   end
 
   protected

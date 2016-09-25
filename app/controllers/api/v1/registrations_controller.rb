@@ -3,29 +3,27 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
                      :if => Proc.new { |c| c.request.format == 'application/json' }
 
   skip_before_filter :authenticate_user_from_token!
+  skip_before_filter :require_no_authentication, only: [:create]
 
   respond_to :json
 
+  # Регистрация.
+  # Передается токен устройства и платформа (android или ios)
   def create
-    build_resource(sign_up_params)
+    modification_json_response("Registered", "Not registered",
+        [:id, :device_token, :platform, :authentication_token]) do
 
-    if resource.save
-      sign_in resource
-      render :status => 200,
-           :json => { :success => true,
-                      :info => "Registered",
-                      :data => { :user => resource } }
-    else
-      render :status => :unprocessable_entity,
-             :json => { :success => false,
-                        :info => resource.errors,
-                        :data => {} }
+      user_params = sign_up_params
+      User.new_from_device_info(user_params[:device_token], 
+                                user_params[:platform], 
+                                user_params[:login],
+                                user_params[:password])
     end
   end
 
   private
 
     def sign_up_params
-      devise_parameter_sanitizer.sanitize(:sign_up)
+      params.require(:user).permit(:device_token, :platform, :login, :password)
     end
 end
