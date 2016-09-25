@@ -31,7 +31,8 @@ module ApplicationHelper
 
     begin
       record = modification_method.call
-
+      puts record.login
+      puts record.password
       if record.save
         attributes = {}
         # Если список атрибутов не передан, возвращаются все атрибуты

@@ -5,6 +5,8 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
   skip_before_filter :authenticate_user_from_token!
   skip_before_filter :require_no_authentication, only: [:create]
 
+  before_filter :check_api_key
+
   respond_to :json
 
   # Регистрация.
@@ -25,5 +27,13 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
 
     def sign_up_params
       params.require(:user).permit(:device_token, :platform, :login, :password)
+    end
+
+    def check_api_key
+      if params[:api_key] != ENV["API_KEY"]
+        simple_json_response("Not registered") do
+          raise UserException.new("Invalid API_KEY")
+        end
+      end
     end
 end
