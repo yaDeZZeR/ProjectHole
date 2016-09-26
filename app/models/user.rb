@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   validates :device_token, presence: true, uniqueness: true
   validates :platform, presence: true
 
+  has_many :locations
+
   # Типы платформ
   enum platform: [:android, :ios]
 

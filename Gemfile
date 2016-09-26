@@ -30,6 +30,8 @@ gem 'devise'
 
 gem 'rails_admin', '~> 1.0'
 
+gem 'geokit-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
