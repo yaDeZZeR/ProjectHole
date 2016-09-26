@@ -55,7 +55,7 @@ group :development, :test do
   gem 'spring'
 
   # Autodeploy
-  gem 'capistrano', '3.1.0'
+  gem 'capistrano', '3.4.0'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
