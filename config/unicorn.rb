@@ -1,5 +1,5 @@
 # Устанавливаем количество процессов на сервере (Чем больше поток пользователей, тем больше нужно процессов)
-application = "Appname"
+application = "ProjectHole"
 
 worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 
