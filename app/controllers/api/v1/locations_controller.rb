@@ -7,7 +7,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
 	def create
 		simple_json_response("Create User Location") do
 			loc = Location.new (create_params.merge({user_id: current_user.id}))
-			new raise UserException.new("Error Create User", {location: loc.errors}) unless loc.save
+			new raise UserException.new("Error Create User Location", {location: loc.errors}) unless loc.save
 			loc
 		end
 	end
