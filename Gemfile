@@ -32,6 +32,10 @@ gem 'rails_admin', '~> 1.0'
 
 gem 'geokit-rails'
 
+gem "rails_admin_map_field", :github => "dkobia/rails_admin_map_field"
+
+gem 'gmaps4rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

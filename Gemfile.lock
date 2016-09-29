@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/dkobia/rails_admin_map_field.git
+  revision: 469e072d7ae702af8a748540c8e26fe9cf5677aa
+  specs:
+    rails_admin_map_field (0.0.2)
+      rails (>= 3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -87,6 +94,7 @@ GEM
       rails (>= 3.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    gmaps4rails (2.1.2)
     haml (4.0.7)
       tilt
     i18n (0.7.0)
@@ -230,11 +238,13 @@ DEPENDENCIES
   dotenv-rails
   foreman (= 0.63.0)
   geokit-rails
+  gmaps4rails
   jbuilder (~> 2.0)
   jquery-rails
   pg
   rails (= 4.2.0)
   rails_admin (~> 1.0)
+  rails_admin_map_field!
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring

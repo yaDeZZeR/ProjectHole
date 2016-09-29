@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         delete 'sessions'      => 'sessions#destroy',     :as => 'logout'
         post   'registrations' => 'registrations#create', :as => 'register'
 
-        resources :locations,  only: [:create]
+        resources :locations,  only: [:create, :index]
       end
     end
   end
