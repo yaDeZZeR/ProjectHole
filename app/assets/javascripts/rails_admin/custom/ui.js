@@ -8,7 +8,7 @@ function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {zoom: 15,center: uluru});
   var lineCoordinates = [];
  
-  $.getJSON( "http://127.0.0.1:8080/api/v1/locations.json?login=" + $('#user_login').val(), function( data ) {
+  $.getJSON( "http://198.211.119.34/api/v1/locations.json?login=" + $('#user_login').val(), function( data ) {
   		var response = data.data;
   		console.log($('#user_login').val())
   		$(data.data).each(function(index){
