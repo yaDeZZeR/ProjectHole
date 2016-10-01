@@ -15,8 +15,21 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
 	def index
 		simple_json_response("Locations") do 
-			User.where({login: params[:login]}).first.locations.collect do |a| 
-				info = { lng: a.lng, lat: a.lat}
+			if !params[:date].nil?
+				User.select("users.*, locations.*")
+					.joins(:locations)
+					.where("users.login = :login AND 
+							locations.created_at >= :begin_date AND 
+							locations.created_at <= :end_date", 
+							{login: params[:login],
+							 begin_date: params[:date] + " 00:00:00",
+							 end_date: params[:date] + " 23:59:59"}).collect do |a|
+					info = { lng: a.lng, lat: a.lat}
+				end
+			else
+				User.where({login: params[:login]}).first.locations.collect do |a| 
+					info = { lng: a.lng, lat: a.lat}
+				end
 			end
 		end
 	end
