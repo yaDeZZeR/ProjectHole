@@ -11,6 +11,8 @@ Rails.application.routes.draw do
         delete 'sessions'      => 'sessions#destroy',     :as => 'logout'
         post   'registrations' => 'registrations#create', :as => 'register'
 
+        get 'locations/find_users'  => 'locations#find_users',  :as => 'find_users'
+
         resources :locations,  only: [:create, :index]
       end
     end

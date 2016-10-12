@@ -34,6 +34,17 @@ class Api::V1::LocationsController < Api::V1::BaseController
 		end
 	end
 
+	def find_users
+		simple_json_response("Users") do
+			Location.get_user_by_datetime_and_radius(params[:datetime].to_datetime, 15, [params[:lat], params[:lng]])
+					.collect do |user|
+						info = {
+							login: user.login
+						}
+					end
+		end
+	end
+
 	private
 		def create_params
 	      params.require(:location).permit(:lat, :lng)
