@@ -36,7 +36,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
 	def find_users
 		simple_json_response("Users") do
-			Location.get_user_by_datetime_and_radius(params[:datetime].to_datetime, 15, [params[:lat], params[:lng]])
+			Location.get_user_by_datetime_and_radius(params[:datetime].to_datetime, 1, [params[:lat], params[:lng]])
 					.collect do |user|
 						info = {
 							login: user.login
