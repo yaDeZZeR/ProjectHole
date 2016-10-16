@@ -12,6 +12,7 @@ Rails.application.routes.draw do
         post   'registrations' => 'registrations#create', :as => 'register'
 
         get 'locations/find_users'  => 'locations#find_users',  :as => 'find_users'
+        post 'users/set_fcm_token'  => 'users#set_fcm_token',   :as => 'set_fcm_token'
 
         resources :locations,  only: [:create, :index]
       end

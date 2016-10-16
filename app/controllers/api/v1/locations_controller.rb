@@ -36,12 +36,14 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
 	def find_users
 		simple_json_response("Users") do
-			Location.get_user_by_datetime_and_radius(params[:datetime].to_datetime, 1, [params[:lat], params[:lng]])
+			tokens = Location.get_user_by_datetime_and_radius(params[:datetime].to_datetime, 1, [params[:lat], params[:lng]], current_user.id)
 					.collect do |user|
-						info = {
-							login: user.login
-						}
+						user.device_token
 					end
+			SendPushJob.perform_later(tokens,  {data: {id: current_user.id, login: current_user.login}, collapse_key: "MAYBE_YOU_FIND"})
+			info = {
+				status: "processed"
+			}
 		end
 	end
 

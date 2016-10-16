@@ -71,6 +71,11 @@ GEM
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
+    delayed_job (4.0.6)
+      activesupport (>= 3.0, < 5.0)
+    delayed_job_active_record (4.0.3)
+      activerecord (>= 3.0, < 5.0)
+      delayed_job (>= 3.0, < 4.1)
     devise (4.2.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -83,6 +88,9 @@ GEM
       railties (>= 4.0, < 5.1)
     erubis (2.7.0)
     execjs (2.7.0)
+    fcm (0.0.2)
+      httparty
+      json
     font-awesome-rails (4.6.3.1)
       railties (>= 3.2, < 5.1)
     foreman (0.63.0)
@@ -97,6 +105,8 @@ GEM
     gmaps4rails (2.1.2)
     haml (4.0.7)
       tilt
+    httparty (0.14.0)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -122,6 +132,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
+    multi_xml (0.5.5)
     nested_form (0.3.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -234,8 +245,10 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm
   coffee-rails (~> 4.1.0)
+  delayed_job_active_record
   devise
   dotenv-rails
+  fcm
   foreman (= 0.63.0)
   geokit-rails
   gmaps4rails

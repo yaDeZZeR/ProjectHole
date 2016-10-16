@@ -36,6 +36,10 @@ gem "rails_admin_map_field", :github => "dkobia/rails_admin_map_field"
 
 gem 'gmaps4rails'
 
+gem 'fcm'
+
+gem 'delayed_job_active_record'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
     })
   end
 
+  def self.set_fcm_token(user_id, token)
+    User.where({id: user_id}).first.update_attribute :device_token, token
+  end
+  
   private
 
     def email_required?
