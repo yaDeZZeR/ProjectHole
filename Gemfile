@@ -49,7 +49,7 @@ gem 'sidekiq'
 gem 'unicorn'
 
 # Upstars scripts
-gem 'foreman', '0.63.0'
+gem 'foreman', '0.82.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
