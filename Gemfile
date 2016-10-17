@@ -42,6 +42,8 @@ gem 'delayed_job_active_record'
 
 gem 'sidekiq'
 
+gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
