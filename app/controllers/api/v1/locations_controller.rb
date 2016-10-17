@@ -40,7 +40,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
 					.collect do |user|
 						user.device_token
 					end
-			SendPushJob.perform_later(tokens,  {data: {id: current_user.id, login: current_user.login}, collapse_key: "MAYBE_YOU_FIND"})
+			SendPushWorker.perform_async(tokens,  {data: {id: current_user.id, login: current_user.login}, collapse_key: "MAYBE_YOU_FIND"})
 			info = {
 				status: "processed"
 			}
