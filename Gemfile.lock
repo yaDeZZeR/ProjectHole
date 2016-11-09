@@ -254,7 +254,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   fcm
-  foreman
+  foreman (= 0.82.0)
   geokit-rails
   gmaps4rails
   jbuilder (~> 2.0)
