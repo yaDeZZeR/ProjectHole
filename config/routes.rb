@@ -15,6 +15,7 @@ Rails.application.routes.draw do
         post 'users/set_fcm_token'  => 'users#set_fcm_token',   :as => 'set_fcm_token'
 
         resources :locations,  only: [:create, :index]
+        resources :vk, only: [:create]
       end
     end
   end

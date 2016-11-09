@@ -42,6 +42,8 @@ gem 'delayed_job_active_record'
 
 gem 'sidekiq'
 
+gem 'vkontakte_api', '~> 1.4'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
