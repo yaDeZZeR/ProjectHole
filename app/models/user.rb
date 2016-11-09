@@ -6,16 +6,21 @@ class User < ActiveRecord::Base
          :rememberable,
          :validatable
 
+  #attr_accessor :skip_password_validation
+
   before_save :ensure_authentication_token
 
   validates :login, presence: true, uniqueness: true
-  validates :password_confirmation, presence: true
 
   # Токен - главный ID. Должен существовать, и не должен повторяться.
-  validates :device_token, presence: true, uniqueness: true
+  validates :device_token, uniqueness: true
   validates :platform, presence: true
 
   has_many :locations
+
+  belongs_to :hair_color
+  has_one :user_profile
+  has_one :vk
 
   # Типы платформ
   enum platform: [:android, :ios]
@@ -46,6 +51,10 @@ class User < ActiveRecord::Base
   private
 
     def email_required?
+      false
+    end
+
+    def password_required?
       false
     end
 
