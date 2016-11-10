@@ -14,7 +14,7 @@ class UserProfile < ActiveRecord::Base
 			birthday: self.birthday,
 			height: self.height,
 			email: self.email,
-			hair_color: self.hair_color.nil? ? nil : self.hair_color.color
+			hair_color_id: self.hair_color_id
 		}
 	end
 end

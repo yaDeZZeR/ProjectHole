@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
         resources :locations,  only: [:create, :index]
         resources :vk, only: [:create]
+        resources :user_profiles, only: [:create]
+        resources :hair_colors, only: [:index]
       end
     end
   end
