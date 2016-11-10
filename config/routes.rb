@@ -9,15 +9,18 @@ Rails.application.routes.draw do
       devise_scope :user do
         post   'sessions'      => 'sessions#create',      :as => 'login'
         delete 'sessions'      => 'sessions#destroy',     :as => 'logout'
-        post   'registrations' => 'registrations#create', :as => 'register'
+        post   'registrations/email' => 'registrations#email',  :as => 'email'
 
         get 'locations/find_users'  => 'locations#find_users',  :as => 'find_users'
+        get 'not_confirmed_users/confirm'  => 'not_confirmed_users#confirm',  :as => 'confirm'
+
         post 'users/set_fcm_token'  => 'users#set_fcm_token',   :as => 'set_fcm_token'
 
         resources :locations,  only: [:create, :index]
         resources :vk, only: [:create]
         resources :user_profiles, only: [:create]
         resources :hair_colors, only: [:index]
+        resources :not_confirmed_users
       end
     end
   end

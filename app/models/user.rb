@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   validates :login, presence: true, uniqueness: true
 
   # Токен - главный ID. Должен существовать, и не должен повторяться.
-  validates :device_token, uniqueness: true
+  validates :device_token, uniqueness: true, allow_nil: true
   validates :platform, presence: true
 
   has_many :locations

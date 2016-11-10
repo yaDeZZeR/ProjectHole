@@ -22,10 +22,36 @@ class Api::V1::RegistrationsController < Api::V1::BaseController
     end
   end
 
+  def email
+    simple_json_response("Email registration") do 
+      par = {login: sign_up_email_params[:email], password: sign_up_email_params[:password]}
+      info = {}
+       user = User.where({login: par[:login]}).first
+       not_user = NotConfirmedUser.where({login: par[:login]}).first
+       if user.nil? && not_user.nil?
+         not_conf_user = NotConfirmedUser.create(par)
+         SendEmailWorker.perform_async(par[:login], not_conf_user.id)
+         info[:status] = "send_email"
+         info[:auth_token] = nil
+       elsif !not_user.nil?
+         info[:status] = "user_not_confirmed"
+         info[:auth_token] = nil
+       else
+         info[:status] = "email_confirmed"
+         info[:auth_token] = user.authentication_token
+       end
+       info
+    end
+  end
+
   private
 
     def sign_up_params
       params.require(:user).permit(:device_token, :platform, :login, :password)
+    end
+
+    def sign_up_email_params
+      params.permit(:email, :password)
     end
 
     def check_api_key

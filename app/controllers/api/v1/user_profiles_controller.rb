@@ -14,6 +14,6 @@ class Api::V1::UserProfilesController < Api::V1::BaseController
 	private
 
 		def creation_params
-			params.permit(:last_name, :first_name, :birthday, :sex, :height, :email, :hair_color_id)
+			params.require(:profile).permit(:last_name, :first_name, :birthday, :sex, :height, :email, :hair_color_id)
 		end
 end

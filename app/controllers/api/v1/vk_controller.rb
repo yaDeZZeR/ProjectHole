@@ -11,7 +11,7 @@ class Api::V1::VkController < Api::V1::BaseController
 				info = {}
 				vk = VkontakteApi.authorize(type: :app_server)
 				res = vk.secure.checkToken( token: params[:vk_token], 
-									  ip: "188.162.64.17",#request.remote_ip, 
+									  ip: request.remote_ip, 
 									  client_secret: VkontakteApi.app_secret)
 				vk_user = Vk.where({vk_id: res.user_id}).first
 				if vk_user.nil?
