@@ -44,6 +44,8 @@ gem 'sidekiq'
 
 gem 'vkontakte_api', '~> 1.4'
 
+gem 'whenever'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

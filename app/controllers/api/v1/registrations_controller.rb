@@ -29,8 +29,9 @@ class Api::V1::RegistrationsController < Api::V1::BaseController
        user = User.where({login: par[:login]}).first
        not_user = NotConfirmedUser.where({login: par[:login]}).first
        if user.nil? && not_user.nil?
-         not_conf_user = NotConfirmedUser.create(par)
-         SendEmailWorker.perform_async(par[:login], not_conf_user.id)
+         token = NotConfirmedUser.generate_token
+         not_conf_user = NotConfirmedUser.create(par.merge({token: token}))
+         SendEmailWorker.perform_async(par[:login], not_conf_user.id, token)
          info[:status] = "send_email"
          info[:auth_token] = nil
        elsif !not_user.nil?

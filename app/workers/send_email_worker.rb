@@ -3,7 +3,7 @@ class SendEmailWorker
 
   include Sidekiq::Worker
 
-  def perform(email, id)
-    EmailSender.send_email(email, id)
+  def perform(email, id, token)
+    EmailSender.send_email(email, id, token)
   end
 end
