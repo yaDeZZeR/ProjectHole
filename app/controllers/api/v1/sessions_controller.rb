@@ -48,6 +48,7 @@ class Api::V1::SessionsController < Devise::SessionsController
   protected
 
     def auth_options
+      puts resource_name
       { scope: resource_name, recall: "#{controller_path}#failure" }
     end
 end

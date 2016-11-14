@@ -1,16 +1,86 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+      #top {
+        position: absolute; 
+        background: #6b1935;
+        /* fully responsive full-screen */
+        height: 15%;
+        width: 100%;
+        /* centered */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: top;
+        padding-left: 150px;
+      }
+      #body {
+        position: absolute;
+        height: 40%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }
+      #bottom {
+        position: absolute;
+        height: 15%;
+        width: 100%;
+        bottom: 0;
+      }
+      #top_header {
+        font-size: 64px;
+        color: white;
+        padding-top: 3%;
+      }
+      #header {
+        font-size: 48px;
+        color: #6b1935;
+      }
+      #sub_header {
+        font-size: 24px;
+        color: #6b1935;
+      }
+      #info {
+        font-size: 12px;
+        color: #6b1935;
+      }
+      #left { text-align: left;}
+      #right { text-align: right; }
+      #center { 
+        text-align: center; 
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }
+
+    </style>
+   
   </head>
+   
   <body>
-    <h1>Здравствуйте.</h1>
-    <p>
-      <% if @is_confirm %>
-        Почта подтверждена
-      <% else %>
-        Ссылка не действительна
-      <% end %>
-    </p>
+    <div id="top">
+      <div id="left">
+        <div id="top_header"> Cherry Lens </div>
+      </div>
+    </div>
+    <div id="body">
+      <div id="center">
+        <p id="header"><b><%=@header%></b></p>
+        <p id="sub_header"><%=@sub_header%></p>
+      </div>
+    </div>
+    <div id="bottom">
+      <div id="center">
+        <p id="info">Вообще, мне плевать.</p>
+      </div>
+    </div>
   </body>
 </html>

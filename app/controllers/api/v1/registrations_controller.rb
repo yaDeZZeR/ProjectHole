@@ -33,13 +33,10 @@ class Api::V1::RegistrationsController < Api::V1::BaseController
          not_conf_user = NotConfirmedUser.create(par.merge({token: token}))
          SendEmailWorker.perform_async(par[:login], not_conf_user.id, token)
          info[:status] = "send_email"
-         info[:auth_token] = nil
        elsif !not_user.nil?
          info[:status] = "user_not_confirmed"
-         info[:auth_token] = nil
        else
          info[:status] = "email_confirmed"
-         info[:auth_token] = user.authentication_token
        end
        info
     end
