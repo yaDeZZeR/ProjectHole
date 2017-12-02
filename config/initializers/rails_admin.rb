@@ -30,6 +30,8 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.included_models = ["User", "RemoteDevice"]
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory

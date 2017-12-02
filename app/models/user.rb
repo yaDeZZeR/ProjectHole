@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   validates :platform, presence: true
 
   has_many :locations
+  has_many :remote_devices
 
   belongs_to :hair_color
   has_one :user_profile

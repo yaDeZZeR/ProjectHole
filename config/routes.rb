@@ -15,8 +15,10 @@ Rails.application.routes.draw do
         get 'not_confirmed_users/confirm'  => 'not_confirmed_users#confirm',  :as => 'confirm'
 
         post 'users/set_fcm_token'  => 'users#set_fcm_token',   :as => 'set_fcm_token'
+        post 'remote_devices/update_ip'  => 'remote_devices#update_ip',   :as => 'update_id'
 
         resources :locations,  only: [:create, :index]
+        resources :remote_devices,  only: [:index]
         resources :vk, only: [:create]
         resources :user_profiles, only: [:create]
         resources :hair_colors, only: [:index]
