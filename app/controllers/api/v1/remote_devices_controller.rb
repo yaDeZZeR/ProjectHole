@@ -6,7 +6,7 @@ class Api::V1::RemoteDevicesController < Api::V1::BaseController
 
 	def update_ip
 		simple_json_response("Update ip address") do
-			device = current_user.remote_devices.where({remote_device_id: params[:device_id]}).first
+			device = current_user.remote_devices.where({id: params[:device_id]}).first
 			unless device.nil?
 				device.update_attributes({ip_address: params[:ip_address]})
 			else
@@ -17,7 +17,18 @@ class Api::V1::RemoteDevicesController < Api::V1::BaseController
 
 	def index
 		simple_json_response("Control Device") do
-			RemoteDevice.where({remote_device_id: params[:device_id]}).first.user.ip_address
+			device = current_user.remote_devices.where({id: params[:device_id]}).first
+			unless device.nil?
+				device.update_attributes({ip_address: request.remote_ip})
+			else
+				raise UserException.new("Device ID not exist for current user")
+			end
+			i = {
+				control_id: RemoteDevice.where({id: params[:device_id]}).first.user.ip_address,
+				translation_info: {
+					video_qualite: device.video_qualite
+				}
+			}
 		end
 	end
 end
