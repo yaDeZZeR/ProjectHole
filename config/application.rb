@@ -24,5 +24,6 @@ module Backend
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.active_job.queue_adapter = :delayed_job
+    config.assets.precompile += %w(rails_admin/rails_admin.css rails_admin/rails_admin.js)
   end
 end
